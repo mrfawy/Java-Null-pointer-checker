@@ -19,6 +19,7 @@ public class ClassUtil {
 	private static final Object[] EMPTY_VALUES = {};
 	private static final Class<?>[]  EMPTY_ARGUMENTS = {};
 	private static final Set<Class<?>> WRAPPER_TYPES = getWrapperTypes();		//used to check whether a field is declared as a wrapper or not.
+	private static final List<String> SKIPPED_PACKAGES=new ArrayList<String>();
 	
 	public static List<Field> getInheritedAndInstanceFields(Class<?> objectClass) {
 		 List<Field> result = new ArrayList<Field>();
@@ -47,10 +48,7 @@ public class ClassUtil {
 		    	
 		    	//Once we get the fields of the current class above we point 'i' to parentClass if 'valid' parent Class if found, else we terminate by pointing 'i' to null
 				if(isValidPackage(i)){
-					i = i.getSuperclass();
-					if(i==Object.class){
-						i=null ;
-					}
+					i = i.getSuperclass();					
 					isParent = true ;
 				}else{
 				   	i=null;
@@ -60,7 +58,12 @@ public class ClassUtil {
 	}
 
 	private static boolean isValidPackage(Class<?> className) {
-		return className.getPackage().getName().contains("com.allied")||className.getPackage().getName().contains("com.nationwide")||className.getPackage().getName().contains("org.oasis_open");
+		for (String pkg:SKIPPED_PACKAGES){
+			if (className.getPackage().getName().contains(pkg)){
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	//--------------------Set Field Value Start---------------------------------------------------------------------
