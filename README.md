@@ -23,38 +23,33 @@ For more info please check class App
 Suppose you have these objects ( complex by difinition)
 We will use JSON to print object contents , setter/getters  are omitted 
 
-`
+``` Java
 TestObjA {
-
 	private String x;
 	private TestObjD testObjD;
 	private List<TestObjB> testObjBList;
 	private List<TestObjD> testObjDList;
 }	
-`
 
-`public class TestObjB {
+public class TestObjB {
 	private int z;
 	private String k;
 	private Date date = new Date();
 }
-`
 
-`
 public class TestObjC {
 	
 	private String data;
 	
 	private List<TestObjD>testObjD;
 }
-`
 
-`
 public class TestObjD {
 	
 	private String dValue;
 	private BigDecimal bigDec;
 }
-`
+
+```
 
 
