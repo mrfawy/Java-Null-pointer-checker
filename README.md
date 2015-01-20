@@ -13,6 +13,8 @@ This utility handles 2 main scenarios
 * Null pointer exception check
 	* Suppose in your code , your input is a complex object , and you start to read some properties in your code from it ( at any level), it's not an easy task to write a test case to check for all different possible combination that this object has a null of some property at any level
 	* We provide a class that will generate these combinations for you , to test your code , just call this method to retrieve all combinations , and voila your code is tested 
+* prividng statistics :
+	* given a complex object , or as a result of a population operation , an object is returned which contains some  statistical info  about it, e.g. number of primitives , null and not null properties .. , at all levels
 
 ## Examples
 
