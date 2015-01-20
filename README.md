@@ -22,6 +22,7 @@ For more info please check class App
 
 Suppose you have these objects ( complex by difinition)
 We will use JSON to print object contents , setter/getters  are omitted 
+
 `
 TestObjA {
 
@@ -31,12 +32,14 @@ TestObjA {
 	private List<TestObjD> testObjDList;
 }	
 `
+
 `public class TestObjB {
 	private int z;
 	private String k;
 	private Date date = new Date();
 }
 `
+
 `
 public class TestObjC {
 	
@@ -45,6 +48,7 @@ public class TestObjC {
 	private List<TestObjD>testObjD;
 }
 `
+
 `
 public class TestObjD {
 	
