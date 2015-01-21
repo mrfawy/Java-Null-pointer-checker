@@ -50,13 +50,7 @@ public class App {
 		List<TestObjA> perList = cnp.initGetNullPermutations();
 		System.out
 				.println("==========AFTER COMPLEX NULL POPULATION ===========");
-		int i = 0;
-		for (TestObjA tmp : perList) {
-			System.out.println("==========||||||||" + i++
-					+ "||||||| ===========");
-			JSONUtil.printJson(tmp);
-			System.out.println("==========|||||||||||||||| ===========");
-		}
+		JSONUtil.printJson(perList);
 	}
 
 	public static void testPrimitiveCounter() {

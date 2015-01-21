@@ -1,6 +1,16 @@
 # Java-Null-pointer-checker
 No more java null pointer exceptions as a result of an input complex object
 
+## How it works:
+
+* Using Java reflection , we construct the object graph that contains all fields (or inherited if the class extends a parent). We traverse using Depth First Search , applying a template and visitor design pattern we define certain action to be executed upon visiting each different type of properties ( nodes of the object graph). 
+
+* This Utility detects cycles and prevents infinite processing , so it's possible to have an object A that contain property B , that contains another property A ( A->B->C->A)
+
+* Easily extendable , just extend  FunctorIF, and implement any logic needed to handle each property type , the traverser will call visit and process methods accordingly 
+
+
+
 ## Definitions:
 * primitive Object : A simple object that contains no other object , in java it could be String,Integer,BigDecimal,Date,Double,Boolean,...
 * Complex Object : An object which contain any number of properties which could be primitive objects or or a collection ( List for now), and/or another Complex Object ( recursively)
@@ -171,4 +181,3 @@ to test your code if it could raise null pointer exception write a test case lik
 		
 	}
 ```
-
