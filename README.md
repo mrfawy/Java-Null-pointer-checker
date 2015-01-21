@@ -51,6 +51,7 @@ public class TestObjD {
 }
 
 ```
+### Populate Object
 Now you want to populate TestObjA with default values ( to be used later in a test case ):
 
 ```Java
@@ -99,5 +100,75 @@ Here is JSON representation of populated Object
 }
 
 ```
+As you can see , object is exploaded at all levels ( creating a new instance for any child object) , created a list and added an element in it , and populated all primitives , integer to 12 , a string propertry to its own name , dates , and so on , all these value can be customized by config , but the idea is clear 
 
+### Null pointer exception testing
+
+In This case we will generate all possible null properties at any level of the complex object
+
+```Java
+ComplexNullifyPopulator<TestObjA> cnp = new ComplexNullifyPopulator<TestObjA>(TestObjA.class);
+List<TestObjA> perList = cnp.initGetNullPermutations();
+//print
+JSONUtil.printJson(perList);
+```
+
+we will get a list of all possible null combination at any level as follows :
+```Json
+==========AFTER COMPLEX NULL POPULATION ===========
+[
+  null,
+  {
+    "testObjBList": [
+      {
+        "z": 0,
+        "testObjCList": [
+          {
+            "testObjD": [
+              {}
+            ]
+          }
+        ]
+      }
+    ],
+    "testObjDList": [
+      {}
+    ]
+  },
+  {
+    "testObjD": {},
+    "testObjDList": [
+      {}
+    ]
+  },
+  {
+    "testObjD": {},
+    "testObjBList": [
+      {
+        "z": 0
+      }
+    ],
+    "testObjDList": [
+      {}
+    ]
+  }
+]
+
+```
+
+to test your code if it could raise null pointer exception write a test case like this :
+
+```Java
+@Test
+	public void testInputNull(){		
+		ComplexNullifyPopulator<TestObjA>cnp=new ComplexNullifyPopulator<TestObjA>(TestObjA.class);
+		List<TestObjA> perList=cnp.initGetNullPermutations();
+		
+		//For each possible null permutation 
+		for(TestObjA myInput : perList){		
+				myMethod(myInput);			
+		}
+		
+	}
+```
 
